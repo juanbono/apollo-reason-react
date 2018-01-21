@@ -2,7 +2,7 @@ open Fetch;
 
 open Utils;
 
-let baseUrl = "";
+let baseUrl = "https://apollo-core.herokuapp.com/";
 
 let mkHeaders = authInfo =>
   HeadersInit.make({
@@ -21,7 +21,7 @@ let mkReq = (maybeCreds: option(authInfo), method, url) =>
   };
 
 module Users = {
-  let callback_url = "";
+  let callback_url = "http://localhost:3000/auth";
   let authPrefix = baseUrl ++ "auth/";
   /** Publico */
   let authUrl = {j|$(authPrefix)google_oauth2?auth_origin_url=$(callback_url)|j};

@@ -9,7 +9,23 @@ Para poder contribuir deben tener instalado:
   * bs-platform (2.1.0)
   * yarn (1.3.2)
 
-**Nota:** Dejo entre parentesis la version que estoy utilizando.
+**Nota:** Entre parentesis la version que estoy utilizando.
+
+1. Instalo dependencias:
+```
+$ npm install -g bs-platform yarn
+$ npm install -g https://github.com/reasonml/reason-cli/archive/3.0.4-bin-linux.tar.gz
+```
+2. Clono el proyecto
+```
+$ git clone https://github.com/apollo-utn-frd/apollo-frontend.git
+```
+3. Instalo y corro el proyecto
+```
+$ cd apollo-frontend
+$ yarn (instalo dependencias del proyecto)
+$ yarn start (corro el proyecto)
+```
 
 # Tecnologias utilizadas:
 

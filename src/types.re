@@ -1,18 +1,16 @@
-module type Type = {
-  type state;
-  type action;
-  let string_of_action: action => string;
+module Auth = {
+  type t = Utils.authInfo;
+  type action =
+    | UpdateAuthInfo(t)
+    | NoAuthInfo;
 };
 
-module UserState = {
+module User = {
   type action =
-    | UpdateCurrentUser;
+    | UpdateUser
+    | NoUser;
   type state =
     | Nothing;
-  let string_of_action = action =>
-    switch action {
-    | UpdateCurrentUser => "UpdateCurrentUser action"
-    };
 };
 
 module Router = {
@@ -23,13 +21,13 @@ module Router = {
   type action =
     | ShowWelcome
     | ShowHome
-    | ShowRegistration
+    | ShowSignIn
     | ShowAuthPage(Utils.authInfo);
   let string_of_action = action =>
     switch action {
     | ShowWelcome => "/"
     | ShowHome => "home"
-    | ShowRegistration => "registration"
+    | ShowSignIn => "signin"
     | ShowAuthPage(_) => "auth"
     };
   let updateRouterState = (component, action) => {
@@ -38,26 +36,22 @@ module Router = {
   };
 };
 
-module AppState = {
+module App = {
   type action =
     | RouterAction(Router.action)
-    | UserStateAction(UserState.action);
+    | UserAction(User.action);
   type state = {
-    userState: UserState.state,
+    userState: User.state,
     routerState: Router.state
   };
-  let string_of_action = action =>
-    switch action {
-    | RouterAction(a) => "RouterAction " ++ Router.string_of_action(a)
-    | UserStateAction(a) => "UserStateAction " ++ UserState.string_of_action(a)
-    };
   let initialState = {
-    userState: UserState.Nothing,
+    userState: User.Nothing,
     routerState: {
-      currentPage: <Login />,
+      currentPage: <Welcome />,
       url: Router.string_of_action(Router.ShowWelcome)
     }
   };
   let getCurrentPage = state => state.routerState.currentPage;
   let getUrl = state => state.routerState.url;
+  let getCurrentUser = state => state.userState;
 };

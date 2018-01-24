@@ -1,0 +1,44 @@
+module R = Types.Router;
+
+module A = Types.App;
+
+let updateState = (state: A.state, component, action) =>
+  ReasonReact.Update({
+    ...state,
+    routerState: R.updateRouterState(component, action)
+  });
+
+let reducer = (action: R.action, state: A.state) =>
+  switch action {
+  | ShowWelcome => updateState(state, <Welcome />, ShowWelcome)
+  | ShowHome => updateState(state, <Home />, ShowHome)
+  | ShowSignIn => updateState(state, <SignIn />, ShowSignIn)
+  | ShowAuthPage(creds) =>
+    let f = u =>
+      Js.log2(
+        "user: ",
+        Js.Dict.get(u, "username") |> Utils.Option.unwrapUnsafely
+      );
+    let comp = <Auth credentials=(Some(creds)) onReceive=f />;
+    updateState(state, comp, ShowAuthPage(creds));
+  };
+
+let routerSub = component =>
+  ReasonReact.(
+    Sub(
+      () =>
+        Router.watchUrl(url =>
+          switch url.path {
+          | ["home"] => component.send(A.RouterAction(ShowHome))
+          | ["signin"] => component.send(A.RouterAction(ShowSignIn))
+          | ["auth"] =>
+            switch (Utils.extractQuerystring(url.search)) {
+            | None => component.send(A.RouterAction(ShowWelcome))
+            | Some(a) => component.send(A.RouterAction(ShowAuthPage(a)))
+            }
+          | _ => component.send(A.RouterAction(ShowWelcome))
+          }
+        ),
+      Router.unwatchUrl
+    )
+  );

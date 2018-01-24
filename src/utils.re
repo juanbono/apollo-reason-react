@@ -24,9 +24,9 @@ let query_of_array = arr =>
   | _ => ("", "")
   };
 
-let string_of_query = q => {
-  let name = fst(q) == "" ? "<nothing>" : fst(q);
-  let value = snd(q) == "" ? "<nothing>" : snd(q);
+let string_of_query = ((fieldName, fieldValue)) => {
+  let name = fieldName == "" ? "<nothing>" : fieldName;
+  let value = fieldValue == "" ? "<nothing>" : fieldValue;
   {j|$(name): $(value)|j};
 };
 
@@ -69,6 +69,12 @@ let filterRequiredFields = lst => {
     None;
   };
 };
+
+let extractQuerystring = querystring =>
+  parseQueryString(querystring)
+  |> Array.map(query_of_array)
+  |> Array.to_list
+  |> filterRequiredFields;
 
 module Option = {
   let unwrapUnsafely = data =>

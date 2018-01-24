@@ -1,5 +1,5 @@
 {
-  "name": "reason-scripts",
+  "name": "apollo-frontend",
   "sources": [
     {
       "dir": "src",
@@ -11,8 +11,8 @@
     "bs-jest",
     "@glennsl/bs-json",
     "bs-fetch",
-    "bs-director",
-    "bs-webapi"
+    "bs-webapi",
+    "vrroom"
   ],
   "reason": {
     "react-jsx": 2

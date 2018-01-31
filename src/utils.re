@@ -83,3 +83,10 @@ module Option = {
     | None => raise(Invalid_argument("unwrapUnsafely called on None"))
     };
 };
+
+let bool_of_opt = opt =>
+  switch opt {
+  | None => false
+  | Some(false) => false
+  | Some(true) => true
+  };

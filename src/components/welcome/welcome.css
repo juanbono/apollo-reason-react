@@ -87,7 +87,7 @@ a:focus {
   width: 100%;
   height: auto;
   text-align: center;
-  /* background: url("assets/img/viajeros.jpg") no-repeat bottom center scroll; */
+  background: url("./img/viajeros.jpg") no-repeat bottom center scroll;
   background-color: #000;
   color: #154771;
   -webkit-background-size: cover;
@@ -289,8 +289,10 @@ img::-moz-selection {
 }
 
 .equipo-img {
+  display: flex;
   border: 4px solid #337ab7;
   border-radius: 50%;
+  height: 80px;
 }
 
 .equipo-img:hover {

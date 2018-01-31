@@ -21,13 +21,13 @@ module Router = {
   type action =
     | ShowWelcome
     | ShowHome
-    | ShowSignIn
+    | ShowSignUp
     | ShowAuthPage(Utils.authInfo);
   let string_of_action = action =>
     switch action {
     | ShowWelcome => "/"
     | ShowHome => "home"
-    | ShowSignIn => "signin"
+    | ShowSignUp => "signup"
     | ShowAuthPage(_) => "auth"
     };
   let updateRouterState = (component, action) => {

@@ -19,10 +19,12 @@ let make = _children => {
   initialState: () => AppT.initialState,
   reducer: (action: AppT.action, state: state) =>
     switch action {
-    | RouterAction(action) => Routing.reducer(action, state)
-    | UserAction(action) => UserState.reducer(action, state)
+    | RouterAction(action) => Reducer.Router.reduce(action, state)
+    | UserAction(action) => Reducer.User.reduce(action, state)
     },
-  subscriptions: self => [Routing.routerSub(self)],
+  subscriptions: self => [Reducer.Router.subscription(self)],
   render: self =>
-    <div className="App"> (AppT.getCurrentPage(self.state)) </div>
+    <Reactstrap.Container fluid=true>
+      (AppT.getCurrentPage(self.state))
+    </Reactstrap.Container>
 };

@@ -1,6 +1,16 @@
 open Utils;
 
+open Reactstrap;
+
 requireCSS("./welcome.css");
+
+let fede = requireAssetURI("./img/federico.jpg");
+
+let matias = requireAssetURI("./img/matias.jpg");
+
+let juan = requireAssetURI("./img/juan.jpg");
+
+let imgViajeros = requireAssetURI("./img/viajeros.jpg");
 
 /* Introduccion data-spy="scroll" data-target=".navbar-fixed-top"*/
 let component = ReasonReact.statelessComponent("Welcome");
@@ -13,12 +23,14 @@ let make = _children => {
       <div id="page-top">
         <header className="intro">
           <div className="intro-body">
-            <div className="container">
-              <div className="row">
+            <Container>
+              <Row>
                 <div className="col-md-10 col-md-offset-1">
                   <h1 className="brand-heading"> (str("Apollo")) </h1>
                   <p className="pintro">
-                    (str("Comparte tu viaje con el mundo o insp\195\173rate"))
+                    (
+                      str({js| Comparte tu viaje con el mundo o inspírate |js})
+                    )
                   </p>
                   <LoginButton />
                   <div>
@@ -27,74 +39,53 @@ let make = _children => {
                     </a>
                   </div>
                 </div>
-              </div>
-            </div>
+              </Row>
+            </Container>
           </div>
         </header>
-        <section id="about" className="container content-section text-center">
-          <div className="row">
+        <Container id="about" className="content-section text-center">
+          <Row>
             <div className="col-md-10 col-md-offset-1">
               <h2> (str("Acerca de Apollo")) </h2>
               <p>
                 (
                   str(
-                    "Apollo es una red social para compartir viajes. Te permite llevar a cabo la planificaci\195\179n de un viaje y el descubrimiento de nuevos destinos tur\195\173sticos sin tener que pasar horas buscando informaci\195\179n sobre el mismo en internet; tan solo debes entrar en la aplicaci\195\179n y ver los viajes y recomendaciones de otras personas que te alcanzar\195\161n para crear tu viaje ideal."
+                    {js| Apollo es una red social para compartir viajes. Te permite llevar a cabo la planificación de un viaje y el descubrimiento de nuevos destinos turísticos sin tener que pasar horas buscando información sobre el mismo en internet; tan solo debes entrar en la aplicación y ver los viajes y recomendaciones de otras personas que te alcanzarían para crear tu viaje ideal. |js}
                   )
                 )
               </p>
               <p>
                 (
                   str(
-                    "A trav\195\169s de esta aplicaci\195\179n, se intenta resolver el problema de miles de personas que buscan realizar un viaje con \195\169xito y con el menor esfuerzo posible, de la mano de viajeros que ya estuvieron en el lugar o quieren realizar la misma traves\195\173a."
+                    {js| A través de esta aplicación, se intenta resolver el problema de miles de personas que buscan realizar un viaje con éxito y con el menor esfuerzo posible, de la mano de viajeros que ya estuvieron en el lugar o quieren realizar la misma travesía. |js}
                   )
                 )
               </p>
               <p>
                 (
                   str(
-                    "Apollo es un proyecto que comenz\195\179 en la catedra de Ingenier\195\173a de Software en la"
+                    {js| Apollo es un proyecto que comenzó en la catedra de Ingeniería de Software en la |js}
                   )
                 )
                 <a href="http://www.frd.utn.edu.ar"> (str("UTN FRD")) </a>
               </p>
             </div>
-          </div>
-        </section>
+          </Row>
+        </Container>
         /*Nosotros Section */
-        <section
-          id="nosotros" className="container content-section text-center">
-          <div className="row">
+        <Container id="team" className="content-section text-center">
+          <Row>
             <h2> ("Nosotros" |> str) </h2>
-            <div className="equipo">
-              <a href="https://ar.linkedin.com/in/juan-bono-62803685">
-                <img className="equipo-img" src="assets/img/equipo/juan.jpg" />
-              </a>
-            </div>
-            <div className="equipo">
-              <a
-                href="https://ar.linkedin.com/in/mat\195\173as-mangiantini-668001126">
-                <img
-                  className="equipo-img"
-                  src="assets/img/equipo/matias.jpg"
-                />
-              </a>
-            </div>
-            <div className="equipo">
-              <a href="https://ar.linkedin.com/in/federico-sanches">
-                <img
-                  className="equipo-img"
-                  src="assets/img/equipo/federico.jpg"
-                />
-              </a>
-            </div>
-          </div>
-        </section>
+            <TeamIcon member=juan linkedin=Constants.linkedinJuan />
+            <TeamIcon member=matias linkedin=Constants.linkedinMatias />
+            <TeamIcon member=fede linkedin=Constants.linkedinFede />
+          </Row>
+        </Container>
         /* Contacto Section */
-        <section
-          id="contact" className="container content-section text-center">
-          <div className="row">
+        <Container id="contact" className="content-section text-center">
+          <Row>
             <div className="col-md-10 col-md-offset-1">
-              <h2> (str("Comun\195\173cate con Nosotros")) </h2>
+              <h2> ({js|Comunícate con Nosotros|js} |> str) </h2>
               <p> (str("Estamos en las redes sociales.")) </p>
               <ul className="list-inline banner-social-buttons">
                 <li>
@@ -122,7 +113,7 @@ let make = _children => {
               </ul>
               <p>
                 (
-                  "\194\161Si\195\169ntete libre de escribirnos a nuestro email para poder seguir mejorando!"
+                  {js| Siéntete libre de escribirnos a nuestro email para poder seguir mejorando! |js}
                   |> str
                 )
               </p>
@@ -132,13 +123,13 @@ let make = _children => {
                 </a>
               </p>
             </div>
-          </div>
-        </section>
+          </Row>
+        </Container>
         /* Footer */
         <footer>
-          <div className="container text-center">
-            <p> ("Copyright &copy; Apollo Corp. 2016" |> str) </p>
-          </div>
+          <Container className="text-center">
+            <p> ({js|Copyright © Apollo Corp. 2018|js} |> str) </p>
+          </Container>
         </footer>
       </div>
     </div>

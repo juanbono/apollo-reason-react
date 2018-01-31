@@ -4,9 +4,7 @@ let make = _children => {
   ...component,
   render: _self =>
     <button
-      onClick=(
-        _event => DomRe.Window.setLocation(DomRe.window, Api.Users.authUrl)
-      )>
-      (Utils.str("Login"))
+      onClick=(_e => DomRe.Window.setLocation(DomRe.window, Api.Users.authUrl))>
+      <GoogleIcon />
     </button>
 };

@@ -12,11 +12,17 @@
     "@glennsl/bs-json",
     "bs-fetch",
     "bs-webapi",
-    "vrroom"
+    "vrroom",
+    "bs-css",
+    "bs-reform"
   ],
   "reason": {
     "react-jsx": 2
   },
   "bsc-flags": ["-bs-super-errors"],
-  "refmt": 3
+  "refmt": 3,
+  "warnings": {
+    "number": "+R",
+    "error": "+R"
+  }
 }

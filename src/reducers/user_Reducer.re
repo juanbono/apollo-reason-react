@@ -3,7 +3,7 @@ module U = Types.User;
 
 module A = Types.App;
 
-let reducer = (action: U.action, state: A.state) =>
+let reduce = (action: U.action, state: A.state) =>
   switch action {
   | UpdateUser => ReasonReact.Update(state)
   | NoUser => ReasonReact.NoUpdate

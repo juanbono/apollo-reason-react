@@ -22,10 +22,9 @@ let make = _children => {
       <WelcomeNavBar />
       <div id="page-top">
         <header className="intro">
-          <div className="intro-body">
-            <Container>
-              <Row>
-                <div className="col-md-10 col-md-offset-1">
+            <Container className="intro-body">
+              <Row className="w-100">
+                <div className="col-md-10 offset-md-1">
                   <h1 className="brand-heading"> (str("Apollo")) </h1>
                   <p className="pintro">
                     (
@@ -33,19 +32,13 @@ let make = _children => {
                     )
                   </p>
                   <LoginButton />
-                  <div>
-                    <a href="#about" className="btn btn-circle page-scroll">
-                      <i className="fa fa-angle-double-down animated" />
-                    </a>
-                  </div>
                 </div>
               </Row>
             </Container>
-          </div>
         </header>
         <Container id="about" className="content-section text-center">
           <Row>
-            <div className="col-md-10 col-md-offset-1">
+            <div className="col-md-10 offset-md-1">
               <h2> (str("Acerca de Apollo")) </h2>
               <p>
                 (
@@ -84,7 +77,7 @@ let make = _children => {
         /* Contacto Section */
         <Container id="contact" className="content-section text-center">
           <Row>
-            <div className="col-md-10 col-md-offset-1">
+            <div className="col-md-10 offset-md-1">
               <h2> ({js|Comunícate con Nosotros|js} |> str) </h2>
               <p> (str("Estamos en las redes sociales.")) </p>
               <ul className="list-inline banner-social-buttons">

@@ -3,8 +3,9 @@ let component = ReasonReact.statelessComponent("loginButton");
 let make = _children => {
   ...component,
   render: _self =>
-    <button
+    /* <button
       onClick=(_e => DomRe.Window.setLocation(DomRe.window, Api.Users.authUrl))>
       <GoogleIcon />
-    </button>
+    </button> */
+    <a href=(Api.Users.authUrl)> <GoogleIcon /> </a>
 };

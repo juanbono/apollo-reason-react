@@ -65,18 +65,22 @@ let make = _children => {
             </div>
           </Row>
         </Container>
+        <hr />
         /*Nosotros Section */
         <Container id="team" className="content-section text-center">
-          <Row>
-            <h2> ("Nosotros" |> str) </h2>
-            <TeamIcon member=juan linkedin=Constants.linkedinJuan />
-            <TeamIcon member=matias linkedin=Constants.linkedinMatias />
-            <TeamIcon member=fede linkedin=Constants.linkedinFede />
+          <Row className="w-100">
+            <div className="col-md-10 offset-md-1">
+              <h2> ("Nosotros" |> str) </h2>
+              <TeamIcon member=juan linkedin=Constants.linkedinJuan />
+              <TeamIcon member=matias linkedin=Constants.linkedinMatias />
+              <TeamIcon member=fede linkedin=Constants.linkedinFede />
+            </div>
           </Row>
         </Container>
+        <hr />
         /* Contacto Section */
         <Container id="contact" className="content-section text-center">
-          <Row>
+          <Row className="w-100">
             <div className="col-md-10 offset-md-1">
               <h2> ({js|Comunícate con Nosotros|js} |> str) </h2>
               <p> (str("Estamos en las redes sociales.")) </p>
@@ -85,7 +89,7 @@ let make = _children => {
                   <a
                     href="https://www.facebook.com/pg/apollocom-238918739899778"
                     className="btn btn-default btn-lg">
-                    <i className="fa fa-facebook fa-fw" />
+                    <i className="fab fa-facebook-square" />
                     <span className="network-name"> ("Facebook" |> str) </span>
                   </a>
                 </li>
@@ -119,10 +123,8 @@ let make = _children => {
           </Row>
         </Container>
         /* Footer */
-        <footer>
-          <Container className="text-center">
+        <footer className="footer text-center">
             <p> ({js|Copyright © Apollo Corp. 2018|js} |> str) </p>
-          </Container>
         </footer>
       </div>
     </div>

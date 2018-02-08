@@ -2,7 +2,6 @@ open Fetch;
 
 open Utils;
 
-
 let baseUrl = "https://apollo-core.herokuapp.com/";
 
 let mkHeaders = authInfo =>
@@ -20,6 +19,15 @@ let mkReq = (maybeCreds: option(authInfo), method, url) =>
     RequestInit.make(~method_=method, ~headers=mkHeaders(authInfo), ())
     |> fetchWithInit(url)
   };
+
+let submitFormData = (authInfo, values, url) =>
+  RequestInit.make(
+    ~method_=Put,
+    ~headers=mkHeaders(authInfo),
+    ~body=Fetch.BodyInit.make(Encode.formData(values) |> Json.stringify),
+    ()
+  )
+  |> fetchWithInit(url);
 
 module Users = {
   let callback_url = "http://localhost:3000/auth";
@@ -55,7 +63,13 @@ module Users = {
       |> then_(json => Js.Json.decodeObject(json) |> resolve)
       |> then_(opt => Option.unwrapUnsafely(opt) |> resolve)
     );
-  let updateUser = /* PUT */ {j|$(baseUrl)users/me|j};
+  let updateUser = (authInfo, values) =>
+    Js.Promise.(
+      {j|$(baseUrl)users/me|j}
+      |> submitFormData(authInfo, values)
+      |> then_(Response.json)
+      |> then_(json => Js.log(json) |> resolve)
+    );
   let validateUser = /* POST */ {j|$(baseUrl)users/me/validate|j};
   let updateImage = /* PUT */ {j|$(baseUrl)users/me/image|j};
   let getTravels = id => /* GET */ {j|$(baseUrl)$(id)/travels|j};

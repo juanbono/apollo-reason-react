@@ -12,14 +12,12 @@ let reduce = (action: R.action, state: A.state) =>
   switch action {
   | ShowWelcome => updateState(state, <Welcome />, ShowWelcome)
   | ShowHome => updateState(state, <Home />, ShowHome)
-  | ShowSignUp => updateState(state, <SignUp />, ShowSignUp)
+  | ShowSignUp(creds) =>
+    updateState(state, <SignUp credentials=creds />, ShowSignUp(creds))
   | ShowAuthPage(creds) =>
     let f = u =>
-      Js.log2(
-        "user: ",
-        Js.Dict.get(u, "username") |> Utils.Option.unwrapUnsafely
-      );
-    let comp = <Auth credentials=(Some(creds)) onReceive=f />;
+      Js.log(Js.Dict.get(u, "username") |> Utils.Option.unwrapUnsafely);
+    let comp = <AuthPage credentials=(Some(creds)) onReceive=f />;
     updateState(state, comp, ShowAuthPage(creds));
   };
 
@@ -30,7 +28,11 @@ let subscription = component =>
         Router.watchUrl(url =>
           switch url.path {
           | ["home"] => component.send(A.RouterAction(ShowHome))
-          | ["signup"] => component.send(A.RouterAction(ShowSignUp))
+          | ["signup"] =>
+            switch (component.state |> A.getUserAuthInfo) {
+            | NoAuthInfo => component.send(A.RouterAction(ShowWelcome))
+            | AuthInfo(a) => component.send(A.RouterAction(ShowSignUp(a)))
+            }
           | ["auth"] =>
             switch (Utils.extractQuerystring(url.search)) {
             | None => component.send(A.RouterAction(ShowWelcome))

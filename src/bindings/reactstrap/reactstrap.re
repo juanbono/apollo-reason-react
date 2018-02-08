@@ -11,3 +11,5 @@ module FormGroup = FormGroup_reactstrap;
 module Input = Input_reactstrap;
 
 module Label = Label_reactstrap;
+
+module Alert = Alert_reactstrap;

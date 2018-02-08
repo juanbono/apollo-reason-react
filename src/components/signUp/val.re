@@ -1,8 +1,15 @@
+let between = (min, max, s) =>
+  String.length(s) < min || String.length(s) > max;
+
+let required = s => Js.String.length(s) != 0;
+
+let mkVal = (cond, msg) => cond ? Some(msg) : None;
+
 module SignUpFormParams = {
   /*
    Campos y validaciones:
-   - nombre: [V.required, V.minLength(1), V.maxLength(20)]
-   - apellido: [V.required, V.minLength(1), V.maxLength(20)]
+   - nombre: [V.required, V.minLength(1), V.maxLength(20)]    OK!
+   - apellido: [V.required, V.minLength(1), V.maxLength(20)]  OK!
    - username: [V.required, V.minLength(4), V.maxLength(20)]
    - descripcion: V.maxLength(150)
     */
@@ -24,24 +31,10 @@ module SignUpFormParams = {
   ];
 };
 
-module SignUpFormContainer = ReForm.Create(SignUpFormParams);
+let lastname = (s: SignUpFormParams.state) => s.lastname;
 
-let defaults = (defaultValue, optional) =>
-  switch optional {
-  | Some(value) => value
-  | None => defaultValue
-  };
+let firstname = (s: SignUpFormParams.state) => s.firstname;
 
-open Reactstrap;
+let username = (s: SignUpFormParams.state) => s.username;
 
-let component = ReasonReact.statelessComponent("SignUp");
-
-let make = _children => {
-  ...component,
-  render: _self =>
-    <Form>
-      <FormGroup>
-        <Reactstrap.Label> ("Nombre" |> Utils.str) </Reactstrap.Label>
-      </FormGroup>
-    </Form>
-};
+let description = (s: SignUpFormParams.state) => s.description;

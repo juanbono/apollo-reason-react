@@ -84,3 +84,14 @@ let authorization: Models.authorization => Js.Json.t =
         ("travel_id", int(authObj.travel_id))
       ])
     );
+
+let formData: Val.SignUpFormParams.state => Js.Json.t =
+  obj =>
+    Json.Encode.(
+      object_([
+        ("username", string(obj.username)),
+        ("name", string(obj.firstname)),
+        ("lastname", string(obj.lastname)),
+        ("description", string(obj.description))
+      ])
+    );

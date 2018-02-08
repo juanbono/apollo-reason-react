@@ -26,8 +26,5 @@ let make = _children => {
        */
     },
   subscriptions: self => [Reducer.Router.subscription(self)],
-  render: self =>
-    <Reactstrap.Container fluid=true>
-      (AppT.getCurrentPage(self.state))
-    </Reactstrap.Container>
+  render: self => (AppT.getCurrentPage(self.state))
 };

@@ -22,10 +22,9 @@ let make = _children => {
       <WelcomeNavBar />
       <div id="page-top">
         <header className="intro">
-          <div className="intro-body">
-            <Container>
-              <Row>
-                <div className="col-md-10 col-md-offset-1">
+            <Container className="intro-body">
+              <Row className="w-100">
+                <div className="col-md-10 offset-md-1">
                   <h1 className="brand-heading"> (str("Apollo")) </h1>
                   <p className="pintro">
                     (
@@ -33,19 +32,13 @@ let make = _children => {
                     )
                   </p>
                   <LoginButton />
-                  <div>
-                    <a href="#about" className="btn btn-circle page-scroll">
-                      <i className="fa fa-angle-double-down animated" />
-                    </a>
-                  </div>
                 </div>
               </Row>
             </Container>
-          </div>
         </header>
         <Container id="about" className="content-section text-center">
           <Row>
-            <div className="col-md-10 col-md-offset-1">
+            <div className="col-md-10 offset-md-1">
               <h2> (str("Acerca de Apollo")) </h2>
               <p>
                 (
@@ -72,19 +65,23 @@ let make = _children => {
             </div>
           </Row>
         </Container>
+        <hr />
         /*Nosotros Section */
         <Container id="team" className="content-section text-center">
-          <Row>
-            <h2> ("Nosotros" |> str) </h2>
-            <TeamIcon member=juan linkedin=Constants.linkedinJuan />
-            <TeamIcon member=matias linkedin=Constants.linkedinMatias />
-            <TeamIcon member=fede linkedin=Constants.linkedinFede />
+          <Row className="w-100">
+            <div className="col-md-10 offset-md-1">
+              <h2> ("Nosotros" |> str) </h2>
+              <TeamIcon member=juan linkedin=Constants.linkedinJuan />
+              <TeamIcon member=matias linkedin=Constants.linkedinMatias />
+              <TeamIcon member=fede linkedin=Constants.linkedinFede />
+            </div>
           </Row>
         </Container>
+        <hr />
         /* Contacto Section */
         <Container id="contact" className="content-section text-center">
-          <Row>
-            <div className="col-md-10 col-md-offset-1">
+          <Row className="w-100">
+            <div className="col-md-10 offset-md-1">
               <h2> ({js|Comunícate con Nosotros|js} |> str) </h2>
               <p> (str("Estamos en las redes sociales.")) </p>
               <ul className="list-inline banner-social-buttons">
@@ -92,7 +89,7 @@ let make = _children => {
                   <a
                     href="https://www.facebook.com/pg/apollocom-238918739899778"
                     className="btn btn-default btn-lg">
-                    <i className="fa fa-facebook fa-fw" />
+                    <i className="fab fa-facebook-square" />
                     <span className="network-name"> ("Facebook" |> str) </span>
                   </a>
                 </li>
@@ -126,10 +123,8 @@ let make = _children => {
           </Row>
         </Container>
         /* Footer */
-        <footer>
-          <Container className="text-center">
+        <footer className="footer text-center">
             <p> ({js|Copyright © Apollo Corp. 2018|js} |> str) </p>
-          </Container>
         </footer>
       </div>
     </div>

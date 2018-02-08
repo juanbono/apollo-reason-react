@@ -1,9 +1,8 @@
 import React from "react";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import { faGoogle, faFacebook } from "@fortawesome/fontawesome-free-brands";
+import ggoogleIcon from "./img/btn_google_signin_normal.png";
 
 const GoogleIcon = () => {
-  return <FontAwesomeIcon icon={faGoogle} />;
+  return <img src={ggoogleIcon} />;
 };
 
 export default GoogleIcon;
